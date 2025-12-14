@@ -7,7 +7,7 @@ export default function CommentForm({ taskId, onCommentAdded }) {
   const handleSubmit = async (e) => {
     const token = localStorage.getItem("tftoken")
     e.preventDefault();
-    const res = await fetch('http://localhost:5000/api/comments', {
+    const res = await fetch(`http://${process.env.NEXT_PUBLIC_URL}:5000/api/comments`, {
       method: 'POST',
       headers: {
           'Authorization': `Bearer ${token}`,

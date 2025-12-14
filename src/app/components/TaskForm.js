@@ -22,7 +22,7 @@ const TaskForm = ({ userRole }) => {
 
     try {
       const token = localStorage.getItem("tftoken"); // Changed from "tftoken" to "token"
-      const response = await fetch('http://localhost:5000/api/tasks', {
+      const response = await fetch(`http://${process.env.NEXT_PUBLIC_URL}:5000/api/tasks`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

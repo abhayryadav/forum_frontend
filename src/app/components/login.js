@@ -93,7 +93,7 @@ function LoginPage() {
             role: formData.role,
             SecretKey:formData.SecretKey
           };
-      const response = await fetch(`http://localhost:5000${endpoint}`, {
+      const response = await fetch(`http://${process.env.NEXT_PUBLIC_URL}:5000${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
