@@ -1,42 +1,42 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.header {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  text-align: center;
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: black;
 }
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* root for ai feed */
+:root {
+  --tactical-bg: hsl(210, 15%, 8%);
+  --tactical-surface: hsl(210, 12%, 12%);
+  --tactical-border: hsl(210, 10%, 25%);
+  --tactical-accent: hsl(180, 100%, 50%);
+  --tactical-success: hsl(142, 76%, 36%);
+  --tactical-warning: hsl(38, 92%, 50%);
+  --tactical-danger: hsl(0, 84%, 60%);
+  --tactical-muted: hsl(210, 8%, 45%);
+  --tactical-text: hsl(210, 20%, 98%);
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.main::-webkit-scrollbar {
+  display: none; 
 }

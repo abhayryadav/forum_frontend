@@ -1,66 +1,130 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+import React, { useState, useEffect } from 'react';
+import TaskList from './TaskList/page';
+import TaskForm from './components/TaskForm';
+import LoginSignup from './components/login';
+import styles from './page.module.css';
+import { useRouter } from 'next/navigation';
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userRole, setUserRole] = useState('');
+  const [showLogin, setShowLogin] = useState(true);
+  const router = useRouter()
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    checkSession();
+  }, []);
+
+  const checkSession = async () => {
+    const token = localStorage.getItem("tftoken")
+    if(!token){
+      window.alert("please login")
+      router.push("/")
+      return
+    }
+    try {
+      setLoading(true)
+      const response = await fetch('http://localhost:5000/api/auth/verify-token', {
+        method: "GET",
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      if (response.ok) {
+        console.log("99999999999",data)
+        
+        setIsAuthenticated(true);
+        setUserRole(data.user.role);
+        
+          setLoading(false)
+       
+      }
+    } catch (error) {
+      console.error('Session check error:', error);
+    }
+  };
+
+  const handleAuthSuccess = (role) => {
+    setIsAuthenticated(true);
+    setUserRole(role);
+  };
+
+  const handleLogout = async () => {
+    try {
+      const resp = await fetch('http://localhost:5000/api/auth/logout', {
+        method: 'POST',
+      });
+      if(resp.ok){
+        localStorage.removeItem('tftoken')
+        localStorage.removeItem('tfuser')
+      }
+      setIsAuthenticated(false);
+      setUserRole('');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className={styles.appContainer}>
+        <LoginSignup 
+          onAuthSuccess={handleAuthSuccess}
+          showLogin={showLogin}
+          setShowLogin={setShowLogin}
         />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+      </div>
+    );
+  }
+
+
+
+
+
+
+
+  if (loading) {
+  return (
+     <div className={styles.loadingContainer}>
+   
+      <div className={styles.loadingText}>Loading</div>
+    </div>
+  )
+}
+  return (
+    <div className={styles.appContainer}>
+      <header className={styles.header}>
+        <div className={styles.headerContent}>
+          <h1 className={styles.appTitle}>TaskFlow</h1>
+          <div className={styles.userInfo}>
+            <span className={`${styles.roleBadge} ${userRole === 'admin' ? styles.superuser : ''}`}>
+              {userRole === 'admin' ? 'admin' : 'User'}
+            </span>
+            <button onClick={handleLogout} className={styles.logoutButton}>
+              Logout
+            </button>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+      
+      <main className={styles.mainContent}>
+        <div className={styles.container}>
+          <div className={styles.dashboard}>
+            <div className={styles.sidebar}>
+              <TaskForm userRole={userRole} />
+            </div>
+            
+            <div className={styles.content}>
+              <TaskList userRole={userRole} />
+            </div>
+          </div>
         </div>
       </main>
     </div>
   );
 }
+
+export default App;

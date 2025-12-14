@@ -1,0 +1,382 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+.card {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 0;
+  padding: 40px;
+  box-shadow: 8px 8px 0 #000000;
+  margin-bottom: 40px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #000000;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #666666;
+  letter-spacing: 1px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #000000;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 0;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #666666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tab.active {
+  color: #000000;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #000000;
+}
+
+.form {
+  margin-bottom: 20px;
+}
+
+.error {
+  background-color: #fff5f5;
+  border: 2px solid #ff4444;
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: #ff4444;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success {
+  background-color: #f0fff4;
+  border: 2px solid #00c853;
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: #00c853;
+  text-align: center;
+  font-weight: 500;
+}
+
+.inputGroup {
+  margin-bottom: 24px;
+}
+
+.label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #000000;
+  background: #ffffff;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 4px 4px 0 #000000;
+  transform: translate(-2px, -2px);
+}
+
+.input::placeholder {
+  color: #999999;
+}
+
+/* Role Selection Styles */
+.roleSelection {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f8f8f8;
+  border: 2px solid #000000;
+}
+
+.roleLabel {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.roleOptions {
+  display: grid;
+  gap: 12px;
+}
+
+.roleOption {
+  display: block;
+  cursor: pointer;
+}
+
+.roleRadio {
+  display: none;
+}
+
+.roleCard {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border: 2px solid #000000;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  gap: 12px;
+}
+
+.roleRadio:checked + .roleCard {
+  background: #000000;
+  color: #ffffff;
+  transform: translate(4px, 4px);
+  box-shadow: -4px -4px 0 #666666;
+}
+
+.roleRadio:checked + .roleCard .roleTitle {
+  color: #ffffff;
+}
+
+.roleRadio:checked + .roleCard .roleDesc {
+  color: #cccccc;
+}
+
+.roleIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.userIcon {
+  color: #4285f4;
+  background: #f0f7ff;
+}
+
+.superuserIcon {
+  color: #fbbc05;
+  background: #fff7e0;
+}
+
+.adminIcon {
+  color: #ea4335;
+  background: #fff0ee;
+}
+
+.roleRadio:checked + .roleCard .roleIcon {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.roleInfo {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.roleTitle {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 4px;
+  color: #000000;
+}
+
+.roleDesc {
+  font-size: 0.85rem;
+  color: #666666;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 16px;
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 0;
+  margin-top: 10px;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #ffffff;
+  color: #000000;
+  transform: translate(4px, 4px);
+  box-shadow: -4px -4px 0 #000000;
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+.submitButton:disabled {
+  background-color: #666666;
+  border-color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.footer {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footerText {
+  color: #666666;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.linkButton {
+  background: none;
+  border: none;
+  color: #000000;
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.linkButton:hover {
+  text-decoration: none;
+}
+
+.demoCredentials {
+  max-width: 480px;
+  background: #f8f8f8;
+  border: 2px solid #000000;
+  padding: 20px;
+  text-align: left;
+}
+
+.demoTitle {
+  font-size: 1rem;
+  color: #000000;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.demoText {
+  font-size: 0.85rem;
+  color: #666666;
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 520px) {
+  .card {
+    padding: 30px 20px;
+    border-width: 1px;
+    box-shadow: 6px 6px 0 #000000;
+    max-width: 95%;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .roleSelection {
+    padding: 15px;
+  }
+  
+  .roleCard {
+    padding: 12px;
+  }
+  
+  .roleIcon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .roleTitle {
+    font-size: 0.95rem;
+  }
+  
+  .roleDesc {
+    font-size: 0.8rem;
+  }
+  
+  .submitButton:hover:not(:disabled) {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
