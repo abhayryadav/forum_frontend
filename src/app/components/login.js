@@ -10,11 +10,13 @@ function LoginPage() {
     email: '',
     password: '',
     confirmPassword: '',
-    role: 'user'
+    role: 'user',
+    SecretKey: '',
   });
   const router = useRouter();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [admslctd,setadmslctd] = useState(0);
   const [success, setSuccess] = useState('');
 
   const handleInputChange = (e) => {
@@ -61,7 +63,7 @@ function LoginPage() {
         
     //     const token = localStorage.getItem("tftoken");
     //     if(token){
-    //         const verifytoken = await fetch('http://13.222.160.28:5000/api/auth/verify-token', {
+    //         const verifytoken = await fetch('http://localhost:5000/api/auth/verify-token', {
     //             method: "GET",
     //             headers: {
     //             'Authorization': `Bearer ${token}`,
@@ -88,9 +90,10 @@ function LoginPage() {
         : { 
             email: formData.email,
             password: formData.password,
-            role: formData.role
+            role: formData.role,
+            SecretKey:formData.SecretKey
           };
-      const response = await fetch(`http://13.222.160.28:5000${endpoint}`, {
+      const response = await fetch(`http://localhost:5000${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -211,6 +214,7 @@ function LoginPage() {
                     value="user"
                     checked={formData.role === 'user'}
                     onChange={handleInputChange}
+                    onClick={()=>{setadmslctd(0)}}
                     className={styles.roleRadio}
                   />
                   <div className={styles.roleCard}>
@@ -233,6 +237,7 @@ function LoginPage() {
                     value="admin"
                     checked={formData.role === 'admin'}
                     onChange={handleInputChange}
+                    onClick={()=>{setadmslctd(1)}}
                     className={styles.roleRadio}
                   />
                   <div className={styles.roleCard}>
@@ -281,6 +286,22 @@ function LoginPage() {
                 placeholder="Confirm your password"
                 required
                 minLength="6"
+              />
+            </div>
+          )}
+          {admslctd == 1 &&(
+            <div className={styles.inputGroup}>
+              <label htmlFor="confirmPassword" className={styles.label}>Secret Key</label>
+              <input
+                type="password"
+                id="secretkey"
+                name="SecretKey"
+                value={formData.SecretKey}
+                onChange={handleInputChange}
+                className={styles.input}
+                placeholder="Secret Key"
+                required
+                minLength="4"
               />
             </div>
           )}
