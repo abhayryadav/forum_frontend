@@ -61,7 +61,7 @@ function LoginPage() {
         
     //     const token = localStorage.getItem("tftoken");
     //     if(token){
-    //         const verifytoken = await fetch('http://localhost:5000/api/auth/verify-token', {
+    //         const verifytoken = await fetch('http://13.222.160.28:5000/api/auth/verify-token', {
     //             method: "GET",
     //             headers: {
     //             'Authorization': `Bearer ${token}`,
@@ -90,7 +90,7 @@ function LoginPage() {
             password: formData.password,
             role: formData.role
           };
-      const response = await fetch(`http://localhost:5000${endpoint}`, {
+      const response = await fetch(`http://13.222.160.28:5000${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

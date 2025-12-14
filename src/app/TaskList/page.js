@@ -16,7 +16,7 @@ const TaskList = ({ userRole }) => {
   const fetchTasks = async () => {
     try {
       const token = localStorage.getItem("tftoken")  
-      const response = await fetch('http://localhost:5000/api/tasks', {
+      const response = await fetch('http://13.222.160.28:5000/api/tasks', {
       method: "GET",
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -45,7 +45,7 @@ const TaskList = ({ userRole }) => {
 
     try {
       const token = localStorage.getItem("tftoken")
-      const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+      const response = await fetch(`http://13.222.160.28:5000/api/tasks/${taskId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
