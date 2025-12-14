@@ -24,7 +24,7 @@ const TaskItem = ({ task, userRole, onDelete, onTaskUpdated }) => {
     setLoading(true);
     try {
       const token = localStorage.getItem("tftoken")
-      const response = await fetch(`http://${process.env.NEXT_PUBLIC_URL}:5000/api/tasks/${task._id}`, {
+      const response = await fetch(`http://13.222.160.28:5000/api/tasks/${task._id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

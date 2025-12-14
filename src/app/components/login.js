@@ -59,32 +59,6 @@ function LoginPage() {
 
     try {
       const endpoint = isLogin ? '/api/auth/login' : '/api/auth/signup';
-    //   if(isLogin){
-        
-    //     const token = localStorage.getItem("tftoken");
-    //     if(token){
-    //         const verifytoken = await fetch('http://localhost:5000/api/auth/verify-token', {
-    //             method: "GET",
-    //             headers: {
-    //             'Authorization': `Bearer ${token}`,
-    //             'Content-Type': 'application/json',
-    //             },
-    //         });
-    //         console.log("oooooooooooooooooooooooo")
-    //         if(verifytoken.ok){
-                
-    //             setTimeout(() => {
-                    
-    //                 window.location.href = "/";
-    //                 }, 3000);
-    //         }else{
-    //             localStorage.removeItem("tftoken")
-    //             window.alert("session expired please login")
-    //         }
-         
-    //     }
-        
-    //   }
       const payload = isLogin 
         ? { email: formData.email, password: formData.password }
         : { 
@@ -93,7 +67,7 @@ function LoginPage() {
             role: formData.role,
             SecretKey:formData.SecretKey
           };
-      const response = await fetch(`http://${process.env.NEXT_PUBLIC_URL}:5000${endpoint}`, {
+      const response = await fetch(`http://13.222.160.28:5000${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
