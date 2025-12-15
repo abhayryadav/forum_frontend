@@ -22,7 +22,8 @@ const CommentSection = ({ taskId, userRole, isOwner }) => {
   const fetchComments = async () => {
     const token = localStorage.getItem("tftoken")
     try {
-      const response = await fetch(`http://${process.env.NEXT_PUBLIC_URL}:5000/api/comments/task/${taskId}`, {
+      const response = await fetch(`http://13.222.160.28:5000/api/comments/task/${taskId}`, {
+      // const response = await fetch(`http://localhost:5000/api/comments/task/${taskId}`, {
         method: "GET",
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -52,6 +53,7 @@ const CommentSection = ({ taskId, userRole, isOwner }) => {
     try {
     const token = localStorage.getItem("tftoken")
       const response = await fetch(`http://13.222.160.28:5000/api/comments`, {
+      // const response = await fetch(`http://localhost:5000/api/comments`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -90,6 +92,7 @@ const CommentSection = ({ taskId, userRole, isOwner }) => {
     try {
       const token = localStorage.getItem("tftoken")
       const response = await fetch(`http://13.222.160.28:5000/api/comments/${commentId}`, {
+      // const response = await fetch(`http://localhost:5000/api/comments/${commentId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

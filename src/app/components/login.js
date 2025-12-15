@@ -68,6 +68,8 @@ function LoginPage() {
             SecretKey:formData.SecretKey
           };
       const response = await fetch(`http://13.222.160.28:5000${endpoint}`, {
+        // const response = await fetch(`http://localhost:5000${endpoint}`, {
+
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ const TaskItem = ({ task, userRole, onDelete, onTaskUpdated }) => {
 
   const isOwner = task.createdBy._id === curruid; // You'll need to get current user ID
   const canEdit =  curruid === task.createdBy._id;
-  const canDelete = isOwner || userRole === urole;
+  const canDelete = isOwner || userRole === "admin";
 
   const handleEdit = async (e) => {
     e.preventDefault();
@@ -25,6 +25,7 @@ const TaskItem = ({ task, userRole, onDelete, onTaskUpdated }) => {
     try {
       const token = localStorage.getItem("tftoken")
       const response = await fetch(`http://13.222.160.28:5000/api/tasks/${task._id}`, {
+      // const response = await fetch(`http://localhost:5000/api/tasks/${task._id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -26,6 +26,7 @@ function App() {
     try {
       setLoading(true)
       const response = await fetch(`http://13.222.160.28:5000/api/auth/verify-token`, {
+      // const response = await fetch(`http://localhost:5000/api/auth/verify-token`, {
         method: "GET",
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -55,6 +56,7 @@ function App() {
   const handleLogout = async () => {
     try {
       const resp = await fetch(`http://13.222.160.28:5000/api/auth/logout`, {
+      // const resp = await fetch(`http://localhost:5000/api/auth/logout`, {
         method: 'POST',
       });
       if(resp.ok){
